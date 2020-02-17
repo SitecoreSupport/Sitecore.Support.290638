@@ -50,8 +50,8 @@ namespace Sitecore.Support.ContentSearch.Azure
                 Sitecore.Support.ContentSearch.Azure.Events.RebuildEvents.EventRaiser.RaiseRebuildEndEvent(new SwitchOnRebuildEventRemote
                 {
                     IndexName = this.Name,
-                    SearchCloudIndexName = (string)SearchCloudIndexNamePrePropertyInfo.GetValue(this),
-                    RebuildCloudIndexName = (string)RebuildCloudIndexNamePrePropertyInfo.GetValue(this)
+                    PrimaryCloudIndexName = (string)SearchCloudIndexNamePrePropertyInfo.GetValue(this),
+                    SecondaryCloudIndexName = (string)RebuildCloudIndexNamePrePropertyInfo.GetValue(this)
                 });
 
                 //Sleep used to prevent current index to be deleted 

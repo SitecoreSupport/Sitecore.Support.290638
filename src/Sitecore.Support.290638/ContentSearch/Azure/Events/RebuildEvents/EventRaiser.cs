@@ -1,26 +1,22 @@
-﻿using Sitecore.Abstractions;
 using Sitecore.ContentSearch.Azure.Events.RebuildEvents;
-using Sitecore.DependencyInjection;
+using Sitecore.Eventing;
 using Sitecore.Events;
 
 namespace Sitecore.Support.ContentSearch.Azure.Events.RebuildEvents
 {
     public static class EventRaiser
     {
-        private static BaseEventQueueProvider _eventQueueProvider;
-        private static BaseEventQueueProvider EventQueueProvider => _eventQueueProvider ?? (_eventQueueProvider = ServiceLocator.ServiceProvider.GetService(typeof(BaseEventQueueProvider)) as BaseEventQueueProvider);
-
         public static void RaiseRebuildEndEvent(SwitchOnRebuildEventRemote @event)
         {
             var parameters = new object[]
             {
                 @event.IndexName,
-                @event.SearchCloudIndexName,
-                @event.RebuildCloudIndexName
+                @event.PrimaryCloudIndexName,
+                @event.SecondaryCloudIndexName
             };
 
             Event.RaiseEvent("index:switchonrebuild", parameters);
-            EventQueueProvider.QueueEvent(@event, true, false);
+            EventManager.QueueEvent(@event, true, false);
         }
     }
 }

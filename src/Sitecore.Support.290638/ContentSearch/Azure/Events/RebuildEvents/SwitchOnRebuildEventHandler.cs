@@ -22,7 +22,7 @@ namespace Sitecore.Support.ContentSearch.Azure.Events.RebuildEvents
 
         private void RaiseSwitchOnRebuildRemoteEvent(SwitchOnRebuildEventRemote @event)
         {
-            Sitecore.Events.Event.RaiseEvent("index:switchonrebuild:remote", @event.IndexName, @event.SearchCloudIndexName, @event.RebuildCloudIndexName);
+            Sitecore.Events.Event.RaiseEvent("index:switchonrebuild:remote", @event.IndexName, @event.PrimaryCloudIndexName, @event.SecondaryCloudIndexName);
         }
     }
 }
